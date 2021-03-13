@@ -1,0 +1,33 @@
+version: 2.1
+orbs:
+  newman: postman/newman@0.0.2
+jobs:
+  newman-collection-run:
+    executor: newman/postman-newman-docker
+    steps:
+      - checkout
+      - newman/newman-run:
+          collection: ./Project.postman_collection.json
+          environment: ./Testing3.postman_environment.json
+
+   Dna-collection-run:
+    executor: newman/postman-newman-docker
+    steps:
+      - checkout
+      - newman/newman-run:
+          collection: ./DNA.postman_collection.json
+          environment: ./Testing.postman_environment.json
+   Isotopebatch-collection-run:
+    executor: newman/postman-newman-docker
+    steps:
+      - checkout
+      - newman/newman-run:
+          collection: ./Isotope_Batch.postman_collection.json
+          environment: ./Testing.postman_environment.json
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - newman-collection-run
+    - Dna-collection-run
+    - Isotopebatch-collection-run:
